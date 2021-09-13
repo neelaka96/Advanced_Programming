@@ -1,0 +1,99 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible' content='IE=edge')
+        title JK Company
+        // Tell the browser to be responsive to screen width
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+        // Font Awesome
+        link(rel='stylesheet' href='plugins/fontawesome-free/css/all.min.css')
+        // Ionicons
+        link(rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')
+        // icheck bootstrap
+        link(rel='stylesheet' href='plugins/icheck-bootstrap/icheck-bootstrap.min.css')
+        // Theme style
+        link(rel='stylesheet' href='css/adminlte.min.css')
+        link(rel='stylesheet' href='css/custom.css')
+        // Google Font: Source Sans Pro
+        link(href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700' rel='stylesheet')
+
+        style.
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            input[type=number] {
+                -moz-appearance: textfield;
+            }
+    body.hold-transition.register-page
+        .register-box
+            .register-logo
+                | JK Company
+            .card
+                .card-body.register-card-body
+                    p.login-box-msg Register a new membership
+                    form(action='register' method='post')
+                        .input-group.mb-3
+                            input.form-control(type='number' placeholder='NIC' required name='nic')
+                            .input-group-append
+                                .input-group-text
+                                    span.fas.fa-id-card
+                        .input-group.mb-3
+                            input.form-control(type='text' placeholder='Full Name' required name='name')
+                            .input-group-append
+                                .input-group-text
+                                    span.fas.fa-user
+                        .input-group.mb-3
+                            input.form-control(type='text' placeholder='User Name' required name='username')
+                            .input-group-append
+                                .input-group-text
+                                    span.fas.fa-user
+                        .input-group.mb-3
+                            input.form-control(type='text' placeholder='Address' required name='address')
+                            .input-group-append
+                                .input-group-text
+                                    span.fas.fa-map-marker
+                        .input-group.mb-3
+                            input.form-control(type="tel" maxlength="11" placeholder='Contact Number' required name='contact')
+                            .input-group-append
+                                .input-group-text
+                                    span.fas.fa-phone
+                        .input-group.mb-3
+                            input.form-control(type='number' placeholder='Branch Id' required name='branch')
+                            .input-group-append
+                                .input-group-text
+                                    span.fas.fa-building
+                        .input-group.mb-3
+                            input.form-control(type='password' placeholder='Password' required name='password')
+                            .input-group-append
+                                .input-group-text
+                                    span.fas.fa-lock
+                        .input-group.mb-3
+                            input.form-control(type='password' placeholder='Retype password' required)
+                            .input-group-append
+                                .input-group-text
+                                    span.fas.fa-lock
+                        .row
+                            .col-8
+                                .icheck-primary
+                                    input#agreeTerms(type='checkbox' name='terms' value='agree' required)
+                                    label(for='agreeTerms')
+                                        | I agree to the terms
+                            // /.col
+                            .col-4
+                                button.btn.btn-primary.btn-block(type='submit') Register
+                            // /.col
+                    p(style='text-align: center; margin-top: 20px;')
+                        a(href='login' style='color: inherit;') I already have a membership
+                // /.form-box
+                // /.card
+                // /.register-box
+// jQuery
+script(src='plugins/jquery/jquery.min.js')
+// Bootstrap 4
+script(src='plugins/bootstrap/js/bootstrap.bundle.min.js')
+// AdminLTE App
+script(src='/js/adminlte.min.js')

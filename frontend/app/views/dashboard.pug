@@ -1,0 +1,305 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+        meta(http-equiv='x-ua-compatible' content='ie=edge')
+        title JK Company
+        // Font Awesome Icons
+        link(rel='stylesheet' href='plugins/fontawesome-free/css/all.min.css')
+        // IonIcons
+        link(rel='stylesheet' href='http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')
+        // Theme style
+        link(rel='stylesheet' href='/css/adminlte.min.css')
+        link(rel='stylesheet' href='/css/custom.css')
+        // Google Font: Source Sans Pro
+        link(href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700' rel='stylesheet')
+    body.hold-transition.sidebar-mini
+        .wrapper
+            // Navbar
+            nav.main-header.navbar.navbar-expand.navbar-white.navbar-light
+                // Left navbar links
+                ul.navbar-nav
+                    li.nav-item
+                        a.nav-link(data-widget='pushmenu' href='#' role='button')
+                            i.fas.fa-bars
+                // Right navbar links
+                ul.navbar-nav.ml-auto
+                    // Notifications Dropdown Menu
+                    li.nav-item.dropdown
+                        a.nav-link(data-toggle='dropdown' href='#')
+                            i.far.fa-bell
+                            span.badge.badge-warning.navbar-badge 15
+                        .dropdown-menu.dropdown-menu-lg.dropdown-menu-right
+                            span.dropdown-item.dropdown-header 15 Notifications
+                            .dropdown-divider
+                            a.dropdown-item(href='#')
+                                i.fas.fa-envelope.mr-2
+                                | 4 New E-mails
+                                span.float-right.text-muted.text-sm 3 mins
+                            .dropdown-divider
+                            a.dropdown-item(href='#')
+                                i.fas.fa-users.mr-2
+                                | 8 New Client Requests
+                                span.float-right.text-muted.text-sm 12 hours
+                            .dropdown-divider
+                            a.dropdown-item(href='#')
+                                i.fas.fa-file.mr-2
+                                | 3 New Branch Reports
+                                span.float-right.text-muted.text-sm 2 days
+                            .dropdown-divider
+                            a.dropdown-item.dropdown-footer(href='#') See All Notifications
+            // /.navbar
+            // Main Sidebar Container
+            aside.main-sidebar.sidebar-dark-secondary.elevation-4
+                // Brand Logo
+                a.brand-link(href='dashboard.html')
+                    img.brand-image.img-circle.elevation-3(src='/img/company-logo.png' alt='JK Logo' style='opacity: .8')
+                    span.brand-text.font-weight-light JK Company
+                // Sidebar
+                .sidebar
+                    // Sidebar user panel (optional)
+                    .user-panel.mt-3.pb-3.mb-3.d-flex
+                        .image
+                            img.img-circle.elevation-2(src='/img/user2-160x160.jpg' alt='User Image')
+                        .info
+                            a.d-block(href='#') #{userName}
+                    // Sidebar Menu
+                    nav.mt-2
+                        ul.nav.nav-pills.nav-sidebar.flex-column(data-widget='treeview' role='menu' data-accordion='false')
+                            li.nav-item
+                                a.nav-link.active
+                                    i.nav-icon.fas.fa-tachometer-alt
+                                    p
+                                        | Dashboard
+                            li.nav-item
+                                a.nav-link(href='branches')
+                                    i.nav-icon.fas.fa-building
+                                    p
+                                        | Branches
+                            li.nav-item
+                                a.nav-link(href='product')
+                                    i.nav-icon.fas.fa-archive
+                                    p
+                                        | Product
+                            li.nav-item
+                                a.nav-link(href='stock')
+                                    i.nav-icon.fas.fa-book
+                                    p
+                                        | Stock
+                            li.nav-item
+                                a.nav-link(href='logout')
+                                    i.nav-icon.fas.fa-sign-out-alt
+                                    p
+                                        | Log Out
+                    // /.sidebar-menu
+                    // /.sidebar
+            // Content Wrapper. Contains page content
+            .content-wrapper
+                // Content Header (Page header)
+                .content-header
+                    .container-fluid
+                        .row.mb-2
+                            .col-sm-6
+                                h1.m-0.text-dark Dashboard
+                            // /.col
+                            .col-sm-6
+                                ol.breadcrumb.float-sm-right
+                                    li.breadcrumb-item
+                                        a Home
+                                    li.breadcrumb-item.active Dashboard
+                            // /.col
+                        // /.row
+                        // /.container-fluid
+                        // /.content-header
+                        // Main content
+                    .content
+                        .container-fluid
+                            .row
+                                .col-lg-6
+                                    .card
+                                        .card-header.border-0
+                                            .d-flex.justify-content-between
+                                                h3.card-title Online Store Visitors
+                                                a(href='javascript:void(0);') View Report
+                                        .card-body
+                                            .d-flex
+                                                p.d-flex.flex-column
+                                                    span.text-bold.text-lg 2480
+                                                    span Visitors Over Time
+                                                p.ml-auto.d-flex.flex-column.text-right
+                                                    span.text-success
+                                                        i.fas.fa-arrow-up
+                                                        | 34.5%
+                                                    span.text-muted Since last week
+                                                        // /.d-flex
+                                            .position-relative.mb-4
+                                                canvas#visitors-chart(height='200')
+                                            .d-flex.flex-row.justify-content-end
+                                                span.mr-2
+                                                    i.fas.fa-square.text-primary
+                                                        | This Week
+                                                span
+                                                    i.fas.fa-square.text-gray
+                                                        | Last Week
+                                                    // /.card
+                                    .card
+                                        .card-header.border-0
+                                            h3.card-title Products
+                                            .card-tools
+                                                a.btn.btn-tool.btn-sm(href='#')
+                                                    i.fas.fa-download
+                                                a.btn.btn-tool.btn-sm(href='#')
+                                                    i.fas.fa-bars
+                                        .card-body.table-responsive.p-0
+                                            table.table.table-striped.table-valign-middle
+                                                thead
+                                                    tr
+                                                        th Product
+                                                        th Price
+                                                        th Sales
+                                                        th More
+                                                tbody
+                                                    tr
+                                                        td
+                                                            img.img-circle.img-size-32.mr-2(src='/img/default-150x150.png' alt='Product 1')
+                                                            | MSI GE76 Raider Gaming Laptop
+                                                        td LKR 680,000
+                                                        td
+                                                            small.text-success.mr-1
+                                                                i.fas.fa-arrow-up
+                                                                | 12%
+                                                                | 896 Sold
+                                                        td
+                                                            a.text-muted(href='#')
+                                                                i.fas.fa-search
+
+                                                    tr
+                                                        td
+                                                            img.img-circle.img-size-32.mr-2(src='/img/default-150x150.png' alt='Product 1')
+                                                            | Asus ROG Zephyrus G14 Gaming Laptop
+                                                        td LKR 300,000
+                                                        td
+                                                            small.text-success.mr-1
+                                                                i.fas.fa-arrow-up
+                                                                | 5%
+                                                                | 229 Sold
+                                                        td
+                                                            a.text-muted(href='#')
+                                                                i.fas.fa-search
+
+                                                    tr
+                                                        td
+                                                            img.img-circle.img-size-32.mr-2(src='/img/default-150x150.png' alt='Product 1')
+                                                            | MSI GF75 Thin Gaming Laptop
+                                                        td LKR 280,000
+                                                        td
+                                                            small.text-success.mr-1
+                                                                i.fas.fa-arrow-up
+                                                                | 15%
+                                                                | 896 Sold
+                                                        td
+                                                            a.text-muted(href='#')
+                                                                i.fas.fa-search
+                                                              
+                                                    tr
+                                                        td
+                                                            img.img-circle.img-size-32.mr-2(src='/img/default-150x150.png' alt='Product 1')
+                                                            | MSI GP76 Leopard Gaming Laptop
+                                                            span.badge.bg-danger NEW
+                                                        td LKR 800,000
+                                                        td
+                                                            small.text-success.mr-1
+                                                                i.fas.fa-arrow-up
+                                                                | 63%
+                                                                | 87 Sold
+                                                        td
+                                                            a.text-muted(href='#')
+                                                                i.fas.fa-search
+                                                    // /.card
+                                                    // /.col-md-6
+                                .col-lg-6
+                                    .card
+                                        .card-header.border-0
+                                            .d-flex.justify-content-between
+                                                h3.card-title Sales
+                                                a(href='javascript:void(0);') View Report
+                                        .card-body
+                                            .d-flex
+                                                p.d-flex.flex-column
+                                                    span.text-bold.text-lg LKR 1,458,256.52
+                                                    span Sales Over Time
+                                                p.ml-auto.d-flex.flex-column.text-right
+                                                    span.text-success
+                                                        i.fas.fa-arrow-up
+                                                        | 61.1%
+                                                    span.text-muted Since last month
+                                            // /.d-flex
+                                            .position-relative.mb-4
+                                                canvas#sales-chart(height='200')
+                                            .d-flex.flex-row.justify-content-end
+                                                span.mr-2
+                                                    i.fas.fa-square.text-primary
+                                                    | This year
+                                                span
+                                                    i.fas.fa-square.text-gray
+                                                    | Last year
+                                    // /.card
+                                    .card
+                                        .card-header.border-0
+                                            h3.card-title Online Store Overview
+                                            .card-tools
+                                                a.btn.btn-sm.btn-tool(href='#')
+                                                    i.fas.fa-download
+                                                a.btn.btn-sm.btn-tool(href='#')
+                                                    i.fas.fa-bars
+                                        .card-body
+                                            .d-flex.justify-content-between.align-items-center.border-bottom.mb-3
+                                                p.text-success.text-xl
+                                                    i.ion.ion-ios-refresh-empty
+                                                p.d-flex.flex-column.text-right
+                                                    span.font-weight-bold
+                                                        i.ion.ion-android-arrow-up.text-success
+                                                        | 12%
+                                                    span.text-muted CONVERSION RATE
+                                            // /.d-flex
+                                            .d-flex.justify-content-between.align-items-center.border-bottom.mb-3
+                                                p.text-warning.text-xl
+                                                    i.ion.ion-ios-cart-outline
+                                                p.d-flex.flex-column.text-right
+                                                    span.font-weight-bold
+                                                        i.ion.ion-android-arrow-up.text-warning
+                                                        | 10.8%
+                                                    span.text-muted SALES RATE
+                                            // /.d-flex
+                                            .d-flex.justify-content-between.align-items-center.mb-0
+                                                p.text-danger.text-xl
+                                                    i.ion.ion-ios-people-outline
+                                                p.d-flex.flex-column.text-right
+                                                    span.font-weight-bold
+                                                        i.ion.ion-android-arrow-down.text-danger
+                                                        | 1%
+                                                    span.text-muted REGISTRATION RATE
+                                                           
+            // Control Sidebar
+            aside.control-sidebar.control-sidebar-dark
+                                                                   
+            footer.main-footer
+                strong Copyright &copy; 2015-2021 
+                    a(href='http://jkcompany.lk') JKCompany.lk
+                    | .
+                    | All rights reserved.
+                .float-right.d-none.d-sm-inline-block
+                    b info@jkcompany.lk
+
+        // ./wrapper
+        // REQUIRED SCRIPTS
+        // jQuery
+        script(src='plugins/jquery/jquery.min.js')
+        // Bootstrap
+        script(src='plugins/bootstrap/js/bootstrap.bundle.min.js')
+        // AdminLTE
+        script(src='/js/adminlte.js')
+        // OPTIONAL SCRIPTS
+        script(src='plugins/chart.js/Chart.min.js')
+        script(src='/js/pages/dashboard3.js')

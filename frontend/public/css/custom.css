@@ -1,0 +1,25 @@
+    .actions-column {
+        text-align: center;
+    }
+
+    .action-icon {
+        cursor: pointer;
+        margin: 0 5px 0 5px;
+    }
+
+    .delete-icon {
+        /*        color: darkred;*/
+    }
+
+    .edit-icon {
+        /*        color: darkblue;*/
+    }
+
+    .page-item.active .page-link {
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+
+    a {
+        color: black;
+    }

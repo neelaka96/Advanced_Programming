@@ -1,0 +1,281 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    meta(http-equiv='x-ua-compatible' content='ie=edge')
+    title JK Company
+    // Font Awesome Icons
+    link(rel='stylesheet' href='plugins/fontawesome-free/css/all.min.css')
+    // DataTables
+    link(rel='stylesheet' href='plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')
+    // Theme style
+    link(rel='stylesheet' href='/css/adminlte.min.css')
+    link(rel='stylesheet' href='/css/custom.css')
+    // Google Font: Source Sans Pro
+    link(href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700' rel='stylesheet')
+  body.hold-transition.sidebar-mini
+    .wrapper
+      // Navbar
+      nav.main-header.navbar.navbar-expand.navbar-white.navbar-light
+        // Left navbar links
+        ul.navbar-nav
+          li.nav-item
+            a.nav-link(data-widget='pushmenu' href='#' role='button')
+              i.fas.fa-bars
+        // Right navbar links
+        ul.navbar-nav.ml-auto
+          // Notifications Dropdown Menu
+          li.nav-item.dropdown
+            a.nav-link(data-toggle='dropdown' href='#')
+              i.far.fa-bell
+              span.badge.badge-warning.navbar-badge 15
+            .dropdown-menu.dropdown-menu-lg.dropdown-menu-right
+              span.dropdown-header 15 Notifications
+              .dropdown-divider
+              a.dropdown-item(href='#')
+                i.fas.fa-envelope.mr-2
+                | 4 New E-mails
+                span.float-right.text-muted.text-sm 3 mins
+              .dropdown-divider
+              a.dropdown-item(href='#')
+                i.fas.fa-users.mr-2
+                | 8 New Client Requests
+                span.float-right.text-muted.text-sm 12 hours
+              .dropdown-divider
+              a.dropdown-item(href='#')
+                i.fas.fa-file.mr-2
+                | 3 New Branch Reports
+                span.float-right.text-muted.text-sm 2 days
+              .dropdown-divider
+              a.dropdown-item.dropdown-footer(href='#') See All Notifications
+      // /.navbar
+      // Main Sidebar Container
+      aside.main-sidebar.sidebar-dark-secondary.elevation-4
+        // Brand Logo
+        a.brand-link(href='index3.html')
+          img.brand-image.img-circle.elevation-3(src='/img/company-logo.png' alt='JK Logo' style='opacity: .8')
+          span.brand-text.font-weight-light JK Company
+        // Sidebar
+        .sidebar
+          // Sidebar user panel (optional)
+          .user-panel.mt-3.pb-3.mb-3.d-flex
+            .image
+              img.img-circle.elevation-2(src='/img/user2-160x160.jpg' alt='User Image')
+            .info
+              a.d-block(href='#') #{userName}
+          // Sidebar Menu
+          nav.mt-2
+            ul.nav.nav-pills.nav-sidebar.flex-column(data-widget='treeview' role='menu' data-accordion='false')
+              li.nav-item
+                a.nav-link(href='../dashboard')
+                  i.nav-icon.fas.fa-tachometer-alt
+                  p
+                    | Dashboard
+              li.nav-item
+                a.nav-link(href='../branches')
+                  i.nav-icon.fas.fa-building
+                  p
+                    | Branches
+              li.nav-item
+                a.nav-link(href='../product')
+                  i.nav-icon.fas.fa-archive
+                  p
+                    | Product
+              li.nav-item
+                a.nav-link.active
+                  i.nav-icon.fas.fa-book
+                  p
+                    | Stock
+              li.nav-item
+                a.nav-link(href='../logout')
+                  i.nav-icon.fas.fa-sign-out-alt
+                  p
+                    | Log Out
+          // /.sidebar-menu
+        // /.sidebar
+      // Content Wrapper. Contains page content
+      .content-wrapper
+        // Content Header (Page header)
+        .content-header
+          .container-fluid
+            .row.mb-2
+              .col-sm-6
+                h1.m-0.text-dark Stock
+              // /.col
+              .col-sm-6
+                ol.breadcrumb.float-sm-right
+                  li.breadcrumb-item
+                    a(href='../dashboard') Home
+                  li.breadcrumb-item.active Stock
+              // /.col
+            // /.row
+          // /.container-fluid
+        // /.content-header
+        // Main content
+        .content
+          .container-fluid
+            div(style='width: 100%; text-align: end; padding: 0 0 2vh 0;')
+              button.btn.btn-secondary(type='button' data-toggle='modal' data-target='#add-stock-modal')
+                | Add New Stock Entry
+            .card
+              .card-header
+                h3.card-title Current Stock
+              // /.card-header
+              .card-body
+                table#stocksTable.table.table-bordered.table-striped
+                  thead
+                    tr
+                        th Id
+                        th From Branch Id
+                        th To Branch Id
+                        th Product Id
+                        th Quantity
+                        th Date
+                        th.actions-column Actions
+                  tbody
+                    each stock in stocksList
+                        tr
+                            td #{stock.id}
+                            td #{stock.fromBranchId}
+                            td #{stock.toBranchId}
+                            td #{stock.productId}
+                            td #{stock.stock_qty}
+                            td #{moment(stock.date).format('YYYY-MM-DD')}
+                            td.actions-column
+                                a(data-toggle='modal' data-target='#edit-stock-modal')
+                                  i.nav-icon.fas.fa-pen.action-icon.edit-icon
+                                a(onclick="displayStockDeleteModal("+stock.id+");")
+                                  i.nav-icon.fas.fa-trash-alt.action-icon.delete-icon
+                  tfoot
+                    tr
+                        th Id
+                        th From Branch Id
+                        th To Branch Id
+                        th Product Id
+                        th Quantity
+                        th Date
+                        th.actions-column Actions
+              // /.card-body
+          // /.container-fluid
+        // /.content
+      // /.content-wrapper
+      // Control Sidebar
+      aside.control-sidebar.control-sidebar-dark
+        // Control sidebar content goes here
+        .p-3
+          h5 Title
+          p Sidebar content
+      // /.control-sidebar
+      // Main Footer
+      footer.main-footer
+        // To the right
+        .float-right.d-none.d-sm-inline
+          | info@jkcompany.lk
+        // Default to the left
+        strong Copyright &copy; 2015-2021 
+          a(href='http://jkcompany.lk') JKCompany.lk
+          | .
+        | All rights reserved.
+    // ./wrapper
+    #add-stock-modal.modal.fade
+      .modal-dialog.modal-lg.modal-dialog-centered
+        .modal-content
+          .modal-header
+            h4.modal-title Add New Stock Entry
+            button.close(type='button' data-dismiss='modal' aria-label='Close')
+              span(aria-hidden='true') &times;
+          .modal-body
+            form(action='stock/save' method='post')
+                //- .form-group
+                //-     label(for='branchName') Product
+                //-     select.form-control(autocomplete='off' required)
+                //-         option(disabled selected) select product
+                //-         option(value='12') Harry Potter - Chamber of Secrets
+                //-         option(value='5') Harry Potter - Order of the Phoenix
+                //-         option(value='53') Sherlock Holmes - A Scandal in Bohemia
+                .form-group
+                    label(for='stockFromBranch') From Branch
+                    input#stockFromBranch.form-control(type='number' placeholder='Enter the from branch id' autocomplete='off' required name="fromBranchId")
+                .form-group
+                    label(for='stockToBranch') To Branch
+                    input#stockToBranch.form-control(type='number' placeholder='Enter the to branch id' autocomplete='off' required name="toBranchId")
+                .form-group
+                    label(for='stockProduct') Product
+                    input#stockProduct.form-control(type='number' placeholder='Enter the product id' autocomplete='off' required name="productId")
+                .form-group
+                    label(for='stock_qty') Stock Quantity
+                    input#stock_qty.form-control(type='number' placeholder='Enter the to stock quantity' autocomplete='off' required name="stock_qty")
+                div(style='width: 100%; text-align: end;')
+                    button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+                    button.btn.btn-primary(type='submit' style='min-width: 10vw; margin-left:1vw;') Save
+        // /.modal-content
+      // /.modal-dialog
+    #edit-stock-modal.modal.fade
+      .modal-dialog.modal-lg.modal-dialog-centered
+        .modal-content
+          .modal-header
+            h4.modal-title Edit the Stock
+            button.close(type='button' data-dismiss='modal' aria-label='Close')
+              span(aria-hidden='true') &times;
+          .modal-body
+            form
+              .form-group
+                label Product Name
+                input.form-control(type='text' value='MSI GE76 Raider Gaming Laptop' autocomplete='off' required disabled)
+              .form-group
+                label(for='stockAmount') Amount
+                input#stockAmount.form-control(type='number' placeholder='Enter the stock amount' autocomplete='off' required)
+              div(style='width: 100%; text-align: end;')
+                button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+                button.btn.btn-primary(type='submit' style='min-width: 10vw;  margin-left:1vw;') Update
+        // /.modal-content
+      // /.modal-dialog
+    #delete-stock-modal.modal.fade
+      .modal-dialog.modal-lg.modal-dialog-centered
+        .modal-content
+          .modal-header
+            h4.modal-title Delete the stock
+            button.close(type='button' data-dismiss='modal' aria-label='Close')
+              span(aria-hidden='true') &times;
+          .modal-body
+            form(action='stock/delete' method='post')
+              .form-group
+                | This action cannot be undone. Do you want to delete this stock entry?
+              input#stockId.form-control(type='text' hidden name="stockId")
+              div(style='width: 100%; text-align: end;')
+                button.btn.btn-secondary(type='button' data-dismiss='modal') No
+                button.btn.btn-primary(type='submit' style='min-width: 10vw;  margin-left:1vw;') Yes
+        // /.modal-content
+      // /.modal-dialog
+    // /.modal
+    // REQUIRED SCRIPTS
+    // jQuery
+    script(src='plugins/jquery/jquery.min.js')
+    // Bootstrap 4
+    script(src='plugins/bootstrap/js/bootstrap.bundle.min.js')
+    // DataTables
+    script(src='plugins/datatables/jquery.dataTables.min.js')
+    script(src='plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')
+    script(src='plugins/datatables-responsive/js/dataTables.responsive.min.js')
+    script(src='plugins/datatables-responsive/js/responsive.bootstrap4.min.js')
+    // AdminLTE App
+    script(src='/js/adminlte.min.js')
+    script.
+      $(function() {
+        $('#stocksTable').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+      });
+
+      function displayStockDeleteModal(stockId){
+          console.log("display delete started");
+          $("#delete-stock-modal").find("#stockId").val(stockId);
+          $("#delete-stock-modal").modal('show');
+      }
